@@ -21,39 +21,40 @@ So please don't copy or use it only for reference. Try to solve the question you
 
 using namespace std;
 
+ll dis_even(ll a, ll b)
+{
+    ll mx = max(a, b);
+    if(a >= b)
+    {
+        return mx*mx - (b-1);
+    }
+    else
+    return (mx-1)*(mx-1) + a;
+}
+
+ll dis_odd(ll a, ll b)
+{
+    ll mx = max(a, b);
+    if(a <= b)
+    {
+        return mx*mx - (a-1);
+    }
+    else
+    return (mx-1)*(mx-1) + b;
+}
+
 void solve()
 {
-    ll x, y;
-    cin >> x >> y;
-    ll ans = 0;
-    if(x > y)
-    { 
-        ans = x*x;
-        if(x%2 == 0)
-        ans -= (y - 1);
-        else
-        ans -= ((y) + (x-1));
-        //ans -= (y - 1);
-        
-    }
-    else if(x < y)
+    ll row, col;
+    cin >> row >> col;
+    if(max(row, col)%2 == 0)
     {
-        ans = y*y;
-        if(y%2 == 1)
-        ans -= (x - 1);
-        else
-        ans -= ((y-1) + (x));
+        cout << dis_even(row, col) << endl;
     }
     else
     {
-        ans = x*x;
-        ans -= (x-1);
+        cout << dis_odd(row, col) << endl;
     }
-    cout << ans << endl;
-    //solution of some parts 
-    //2 4 -> 11
-    //2 5 -> 24
-    //3 4 -> 12
 }
 
 int main()
